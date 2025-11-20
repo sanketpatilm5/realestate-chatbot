@@ -19,7 +19,8 @@ ChartJS.register(
   Tooltip
 );
 
-const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:8000/api/chat/";
+const API_BASE = process.env.REACT_APP_API_BASE || "https://realestate-chatbot-fdpo.onrender.com/api/chat/";
+
 
 
 function App() {
