@@ -19,9 +19,10 @@ ChartJS.register(
   Tooltip
 );
 
-const API_BASE = process.env.REACT_APP_API_BASE || "https://realestate-chatbot-fdpo.onrender.com/api/chat/";
-
-
+// Correct API base (NO extra /chat/ here!)
+const API_BASE =
+  process.env.REACT_APP_API_BASE ||
+  "https://realestate-chatbot-fdpo.onrender.com";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -37,7 +38,8 @@ function App() {
     setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/chat/`, {
+      // 👉 Corrected POST request
+      const res = await fetch(`${API_BASE}/api/chat/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
@@ -46,10 +48,9 @@ function App() {
       const data = await res.json();
 
       if (!res.ok) {
-        const errMsg = data.error || "Something went wrong.";
         setMessages((prev) => [
           ...prev,
-          { role: "bot", text: errMsg, error: true },
+          { role: "bot", text: data.error || "Something went wrong.", error: true },
         ]);
       } else {
         setMessages((prev) => [
@@ -185,10 +186,7 @@ function App() {
     };
 
     return (
-      <button
-        className="btn btn-sm btn-outline-secondary my-2"
-        onClick={handleDownload}
-      >
+      <button className="btn btn-sm btn-outline-secondary my-2" onClick={handleDownload}>
         Download Data
       </button>
     );
@@ -204,17 +202,9 @@ function App() {
       </p>
 
       <div className="card mb-3">
-        <div
-          className="card-body"
-          style={{ maxHeight: "60vh", overflowY: "auto" }}
-        >
+        <div className="card-body" style={{ maxHeight: "60vh", overflowY: "auto" }}>
           {messages.map((m, idx) => (
-            <div
-              key={idx}
-              className={`mb-3 ${
-                m.role === "user" ? "text-end" : "text-start"
-              }`}
-            >
+            <div key={idx} className={`mb-3 ${m.role === "user" ? "text-end" : "text-start"}`}>
               <div
                 className={`d-inline-block p-2 rounded ${
                   m.role === "user"
@@ -237,9 +227,7 @@ function App() {
               )}
             </div>
           ))}
-          {messages.length === 0 && (
-            <div className="text-muted">Start by asking a question…</div>
-          )}
+          {messages.length === 0 && <div className="text-muted">Start by asking a question…</div>}
         </div>
       </div>
 
