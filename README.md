@@ -1,60 +1,135 @@
-# Mini Real Estate Analysis Chatbot (React + Django)
+# Real Estate Analysis Chatbot  
+**Full Stack Developer Assignment – Sigmavalue**
 
-This project implements the Sigmavalue Full Stack Developer Assignment.
+🚀 **Live Frontend:** https://realestate-chatbot-lovat.vercel.app  
+🔗 **Backend API:** https://realestate-chatbot-fdpo.onrender.com/api/
 
-## Features
+---
 
-- Django backend with a preloaded Excel dataset (`dataset/Sample_data.xlsx`)
-- Single endpoint: `POST /api/chat/` that accepts natural-language queries:
-  - "Analyze Akurdi"
-  - "Compare Ambegaon Budruk and Aundh demand trends"
-  - "Show price growth for Akurdi over the last 3 years"
-- Backend returns:
-  - A natural-language summary (mock LLM-style text)
-  - Chart JSON (years + demand/price)
-  - Filtered table data
-- React frontend:
-  - Chat-style interface
-  - Displays summary, chart (Chart.js), and filtered table
-  - "Download Data" button to download filtered JSON
+## 📖 Project Overview
+This chatbot helps analyze real estate market trends based on area queries using Excel dataset inputs.  
+It provides:
+- AI-style summary
+- Interactive chart
+- Filtered table
+- Location comparison
+- Data download functionality
 
-## Folder Structure
+---
 
-- `backend/` – Django project
-- `frontend/` – React app
-- `dataset/Sample_data.xlsx` – Excel data
+## 🏗️ Tech Stack
 
-## Backend Setup
+| Layer | Technology |
+|------|------------|
+| Frontend | React, Bootstrap, Chart.js |
+| Backend | Django REST Framework |
+| Data Processing | Pandas |
+| Deployment | Render (Backend), Vercel (Frontend) |
+| Optional | OpenAI API Integration (mocked summary) |
 
+---
+
+## 🚀 Features
+
+- 🔍 Query area analysis (`Analyze Akurdi`)
+- 🔁 Compare two locations (`Compare Wakad and Aundh demand trends`)
+- 📊 View price/demand trends across years
+- 📃 Display filtered data tables
+- 📥 Download JSON data
+- 🧠 Natural language understanding
+
+---
+
+## 📂 Project Structure
+
+```
+real-estate-chatbot/
+├── backend/
+│   ├── api/
+│   ├── config/
+│   ├── requirements.txt
+│   └── data_loader.py
+├── frontend/
+│   ├── src/
+│   ├── .env
+│   └── package.json
+└── README.md
+```
+
+---
+
+## 🧪 Example API Use
+
+### 🔹 Single Query
+```json
+POST /api/chat/
+{
+  "query": "Analyze Akurdi"
+}
+```
+
+### 🔹 Comparison
+```json
+POST /api/chat/
+{
+  "query": "Compare Wakad and Aundh demand trends"
+}
+```
+
+---
+
+## 🛠️ Run Locally
+
+### 1️⃣ Clone & navigate
+```bash
+git clone <your-repo-url>
+cd real-estate-chatbot
+```
+
+### 2️⃣ Backend Setup
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # on Windows: venv\Scripts\activate
+venv\Scripts\activate  # Windows
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
 
-Backend runs at `http://localhost:8000/` and API base is `http://localhost:8000/api/`.
-
-## Frontend Setup
-
+### 3️⃣ Frontend Setup
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm start
 ```
 
-Frontend runs at `http://localhost:3000/` and talks to the backend at `http://localhost:8000/api`.
+---
 
-## Example Queries
+## 🌍 Deployment
 
-- `Analyze Akurdi`
-- `Compare Ambegaon Budruk and Aundh demand trends`
-- `Show price growth for Akurdi over the last 3 years`
+| Component | Platform | Status |
+|-----------|----------|--------|
+| Frontend | Vercel | ✔ Live |
+| Backend | Render | ✔ Live |
 
-## Notes
+Changes pushed to GitHub redeploy automatically.
 
-- Summary text is generated with simple Python logic (mock LLM).
-- Chart is powered by Chart.js via `react-chartjs-2`.
-- Data processing uses `pandas` and reads the Excel at runtime via `api/data_loader.py`.
+---
+
+
+## 👤 Author
+
+**Sanket Vasant Patil**  
+📧 Contact: sanketpatil.m5@gmail.com 
+🧑‍💻 Aspiring Full Stack Developer
+
+---
+
+## 📌 Notes
+- Excel dataset: `Sample_data.xlsx`
+- Mock summary used (easy upgrade to LLM)
+- Production-ready deployment setup
+
+---
+
+
